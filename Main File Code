@@ -1,0 +1,35 @@
+#This project helps people find other random people in the address book, say if you were looking for someone at a certain address
+#this program would help.
+#Here the program is making it clear that you need to enter V to view and A to add adresses
+answer= input("Please enter V to view and A to add ")
+flag = False
+#This if statement helps organize the data into the diferent catagories when something happens
+if answer .lower()=="a":
+  file = open("address.txt", "a")
+  while True:
+    firstname = input("Please enter the first name ")
+    lastname = input("Please enter the last name")
+    address = input("Please enter the address")
+    file.write(firstname+"*" + lastname + "*"+ address +"\n")
+    choice= input("Do you want to continue Yes\No")
+    if choice.lower()=="no":
+      break
+    elif choice.lower() == "yes":
+      pass
+    else:
+      print("Invalid choice")
+      break
+  file.close()
+  #This part of the code makes it possible to actually search for certain parts when the user is prompted
+elif answer .lower()=="v":
+  file = open("address.txt" , "r")
+  fname=input("Searching for....first name.")
+  lname=input("Searching for .... last name")
+  for line in file.read().splitlines():
+    name1,name2,address=line.split("*")
+    if name1.lower()==fname.lower() and name2.lower()==lname.lower():
+      print(address)
+      flag =True
+      break
+  if(flag==False):
+    print("Name not found in the address book.")
